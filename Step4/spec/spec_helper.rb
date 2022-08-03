@@ -11,6 +11,14 @@
 # a separate helper file that requires the additional dependencies and performs
 # the additional setup, and require it from the spec files that actually need
 # it.
+
+# file: spec/spec_helper.rb
+
+require 'database_connection'
+
+# Make sure this connects to your test database
+# (its name should end with '_test')
+DatabaseConnection.connect('recipe_repository_test')
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
