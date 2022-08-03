@@ -13,7 +13,7 @@ RSpec.describe AlbumRepository do
     reset_albums_table
   end
 
-  it 'returns two albums' do
+  it 'returns one albums' do
     repo = AlbumRepository.new
     album = repo.all
     album.length # =>  1
@@ -22,6 +22,16 @@ RSpec.describe AlbumRepository do
     expect(album[0].title).to eq("Certified Lover Boy") # =>  'Drake'
     expect(album[0].release_year).to eq("2021") # =>  '2021'
     expect(album[0].artist_id).to eq("5") # =>  '5'
+    
+  end
+
+  it 'returns "certified lover boy album' do
+    repo = AlbumRepository.new
+    album = repo.find(1)
+
+    expect(album.title).to eq("Certified Lover Boy") # =>  'Drake'
+    expect(album.release_year).to eq("2021") # =>  '2021'
+    expect(album.artist_id).to eq("5") # =>  '5'
     
   end
 end  

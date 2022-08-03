@@ -112,12 +112,12 @@ class AlbumRepository
 
   # Gets a single record by its ID
   # One argument: the id (number)
-  # def find(id)
+  def find(id)
     # Executes the SQL query:
-    # SELECT id, name, cohort_name FROM students WHERE id = $1;
+    # SELECT id, title, release_year, artist_id FROM albums WHERE id = $1;
 
     # Returns a single Student object.
- # end
+ end
 
   # Add more methods below for each operation you'd like to implement.
 

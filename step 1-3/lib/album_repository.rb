@@ -23,4 +23,21 @@ class AlbumRepository
       albums
       # Returns an array of Student objects.
     end
+
+    def find(id)
+      # Executes the SQL query:
+      sql = 'SELECT id, title, release_year, artist_id FROM albums WHERE id = $1;'
+      params = [id]
+      result = DatabaseConnection.exec_params(sql, params)
+      record = result[0]
+
+      album = Album.new
+      album.id = record['id']
+      album.title = record['title']
+      album.release_year = record['release_year']
+      album.artist_id = record['artist_id']
+
+     p album
+      # Returns a single Student object.
+   end
 end
