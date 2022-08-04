@@ -1,38 +1,51 @@
-require 'recipe'
-require 'database_connection'
+require_relative './recipe.rb'
+require_relative './database_connection.rb'
 
 class RecipeRepository
 
     # Selecting all records
     # No arguments
     def all
-      # Executes the SQL query:
-      sql = 'SELECT id, names, avg_time, rating FROM recipes;'
-      result = DatabaseConnection.exec_params(sql, [])
+        arr = []
+        # Executes the SQL query:
+        sql = 'SELECT * FROM recipes;'
+        result = DatabaseConnection.exec_params(sql, [])
 
-      result.each do |recipe|
-        output = Recipes.new
-        output.id = recipe['id']
-        output.names = recipe['name']
-        output.avg_time = recipe['avg_time']
-        output.rating = recipe['rating']
+        result.each do |recipe|
+            dish = Recipes.new
 
-        output
-      end
+            dish.id = recipe['id']
+            dish.names = recipe['names']
+            dish.avg_time = recipe['avg_time']
+            dish.rating = recipe['rating']
 
-      
-  
-      # Returns an array of Student objects.
-    end
+            arr << dish
+        end
+
+        arr
+        # Returns an array of Student objects.
+        end
   
     # Gets a single record by its ID
     # One argument: the id (number)
-#     def find(id)
-#       # Executes the SQL query:
-#       # SELECT id, names, avg_time, rating FROM recipes; WHERE id = $1;
+    def find(id)
+      # Executes the SQL query:
+      sql = 'SELECT id, names, avg_time, rating FROM recipes WHERE id = $1;'
+      params = [id]
+      result = DatabaseConnection.exec_params(sql, params)
+      recipe = result[0]
   
-#       # Returns a single Student object.
-#    end
+      # Returns a single Student object.
+      dish = Recipes.new
+
+        dish.id = recipe['id']
+        dish.names = recipe['names']
+        dish.avg_time = recipe['avg_time']
+        dish.rating = recipe['rating']
+
+        dish
+
+   end
   
     # Add more methods below for each operation you'd like to implement.
   
@@ -45,3 +58,8 @@ class RecipeRepository
     # def delete(student)
     # end
   end
+
+
+
+
+

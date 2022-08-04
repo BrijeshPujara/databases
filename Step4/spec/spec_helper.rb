@@ -18,7 +18,7 @@ require 'database_connection'
 
 # Make sure this connects to your test database
 # (its name should end with '_test')
-DatabaseConnection.connect('recipe_repository_test')
+DatabaseConnection.connect('recipes_directory_test')
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
