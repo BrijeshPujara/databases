@@ -40,4 +40,24 @@ class AlbumRepository
      p album
       # Returns a single Student object.
    end
+
+   def create(artist)
+    sql = 'INSERT INTO albums (title, release_year, artist_id) VALUES($1, $2, $3);'
+    param = [artist.title, artist.release_year, artist.artist_id]
+    DatabaseConnection.exec_params(sql, param)
+   end
+
+   def delete(id)
+    sql = 'DELETE FROM artists WHERE id = $1'
+    param = [id]
+
+    DatabaseConnection.exec_params(sql, param)
+   end
+
+   def update(album)
+    sql = 'UPDATE albums SET title = $1, release_year = $2 WHERE id = $3'
+    params = [album.title, album.release_year, album.id]
+
+    DatabaseConnection.exec_params(sql, params)
+   end
 end
